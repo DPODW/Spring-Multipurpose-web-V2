@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="kr"  xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>게시판</title>
+ 
+</head>
+<body>
+    <div id="board_write">
+        <h4>글을 작성하는 공간입니다.</h4>
+            <div id="write_area">
+                <form enctype="multipart/form-data" action="" method="post">
+                    <p> <input type="text" id="WriterName" name="id" th:value="${id.loginId}" placeholder="아이디" readonly> </p>
+                    <div id="in_title">
+                        <textarea id="utitle" name="title" rows="1" cols="55" placeholder="제목(30자 제한)" maxlength="30" required></textarea>
+                    </div>
+ 
+                    <div class="wi_line"></div>
+                    <div id="in_content">
+                        <textarea rows="10" cols="55" id="Writer-content" name="content" placeholder="내용(100자 제한)" maxlength="100" required></textarea>
+                    </div>
+ 
+                      <input type="file" name="SelectFile" />
+ 
+ 
+                    <div class="bt_se">
+                        <button type="submit" th:formaction="|@{/boards}|">글 작성</button>
+                    </div>
+                </form>
+                <div class="bt_se">
+                    <a th:href="@{/boardHome/}">게시글 홈으로</a>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

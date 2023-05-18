@@ -1,6 +1,6 @@
 package com.multipurpose.web.service.memberservice.impl;
 
-import com.multipurpose.web.repository.memberrepository.MemberRepository;
+import com.multipurpose.web.mapper.MemberMapper;
 import com.multipurpose.web.service.memberservice.LoginService;
 import com.multipurpose.web.vo.membervo.LoginMember;
 import lombok.RequiredArgsConstructor;
@@ -14,11 +14,11 @@ import java.util.List;
 @Service
 public class LoginServiceImpl implements LoginService {
 
-    private final MemberRepository memberRepository;
+
+    private final MemberMapper memberMapper;
 
         @Override
         public List<LoginMember> loginCheck(LoginMember loginMember){
-
-            return memberRepository.logins(loginMember);
+            return memberMapper.logins(loginMember);
     }
 }

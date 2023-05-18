@@ -1,5 +1,6 @@
 package com.multipurpose.web.controller.memberController;
 
+import com.multipurpose.web.mapper.MemberMapper;
 import com.multipurpose.web.repository.memberrepository.SessionConst;
 import com.multipurpose.web.service.memberservice.JoinCheckService;
 import com.multipurpose.web.service.memberservice.MemberService;
@@ -28,8 +29,17 @@ public class MemberController {
 
 
 
+
+
     @GetMapping("/joins")
     public String joinForm(JoinMember joinMember , Model model,HttpServletRequest request){
+        HttpSession session = request.getSession(false);
+        if(session != null){
+            session.invalidate();
+            log.info("joinForm 세션 정상 삭제");
+        }else {
+            log.info("joinForm 세션이 이미 삭제되었거나 없습니다.");
+        }
         model.addAttribute("joinMember", joinMember);
         return "memberView/Join";
     }

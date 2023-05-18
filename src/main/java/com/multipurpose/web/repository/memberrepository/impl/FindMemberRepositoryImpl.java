@@ -1,8 +1,8 @@
 package com.multipurpose.web.repository.memberrepository.impl;
 
-import com.multipurpose.web.mapper.membermapper.checkmapper.CallDuplicatedCheckMapper;
-import com.multipurpose.web.mapper.membermapper.checkmapper.IdDuplicatedCheckMapper;
-import com.multipurpose.web.mapper.membermapper.basicmapper.JoinMapper;
+import com.multipurpose.web.mapperJDBC.membermapper.checkmapper.CallDuplicatedCheckMapper;
+import com.multipurpose.web.mapperJDBC.membermapper.checkmapper.IdDuplicatedCheckMapper;
+import com.multipurpose.web.mapperJDBC.membermapper.basicmapper.JoinMapper;
 import com.multipurpose.web.repository.memberrepository.FindMemberRepository;
 import com.multipurpose.web.vo.membervo.JoinMember;
 import com.multipurpose.web.vo.membervo.LoginMember;

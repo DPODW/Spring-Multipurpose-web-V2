@@ -1,8 +1,8 @@
 package com.multipurpose.web.service.memberservice.impl;
 
 
+import com.multipurpose.web.mapper.MemberMapper;
 import com.multipurpose.web.repository.memberrepository.FindMemberRepository;
-import com.multipurpose.web.repository.memberrepository.impl.MemberRepositoryImpl;
 import com.multipurpose.web.service.memberservice.MemberService;
 import com.multipurpose.web.vo.membervo.JoinMember;
 import com.multipurpose.web.vo.membervo.LoginMember;
@@ -16,25 +16,25 @@ import java.util.List;
 @RequiredArgsConstructor
 @Service
 public class MemberServiceImpl implements MemberService {
-    private final MemberRepositoryImpl memberRepository;
     private final FindMemberRepository findMemberRepository;
+    private final MemberMapper memberMapper;
     private final JoinMember joinMember;
 
 
     @Override
     public void joinOk(JoinMember joinMember){
-        memberRepository.insert(joinMember);
+        memberMapper.insert(joinMember);
     }
 
     @Override
     public JoinMember memberUpdate(JoinMember updateMember){
-        memberRepository.update(updateMember);
+        memberMapper.update(updateMember);
         return updateMember;
     }
 
     @Override
     public void memberDelete(JoinMember deleteMember){
-            memberRepository.delete(deleteMember);
+        memberMapper.delete(deleteMember);
     }
 
     @Override

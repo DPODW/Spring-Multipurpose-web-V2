@@ -1,4 +1,4 @@
-package com.multipurpose.web.mapper.membermapper.basicmapper;
+package com.multipurpose.web.mapperJDBC.membermapper.basicmapper;
 
 import com.multipurpose.web.vo.membervo.LoginMember;
 import org.springframework.jdbc.core.RowMapper;

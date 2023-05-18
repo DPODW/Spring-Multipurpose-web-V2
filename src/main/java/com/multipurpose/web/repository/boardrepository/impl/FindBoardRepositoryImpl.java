@@ -1,7 +1,7 @@
 package com.multipurpose.web.repository.boardrepository.impl;
 
-import com.multipurpose.web.mapper.boardmapper.BoardHomeMapper;
-import com.multipurpose.web.mapper.boardmapper.BoardMapper;
+import com.multipurpose.web.mapperJDBC.boardmapper.BoardHomeMapper;
+import com.multipurpose.web.mapperJDBC.boardmapper.BoardMapper;
 import com.multipurpose.web.repository.boardrepository.FindBoardRepository;
 import com.multipurpose.web.vo.boardvo.Board;
 import lombok.extern.slf4j.Slf4j;

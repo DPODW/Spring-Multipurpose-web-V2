@@ -1,4 +1,4 @@
-package com.multipurpose.web.mapper.boardmapper;
+package com.multipurpose.web.mapperJDBC.boardmapper;
 
 import com.multipurpose.web.vo.boardvo.Board;
 import org.springframework.jdbc.core.RowMapper;

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.multipurpose.web.mapper.MemberMapper">
+
+    <insert id="insert">
+        insert into member(joinName,joinId,joinPwd,joinCall)values(#{joinName},#{joinId},#{joinPwd},#{joinCall});
+    </insert>
+
+    <update id="update">
+        update member set joinName = #{joinName} , joinPwd = #{joinPwd} , joinCall = #{joinCall} where joinId = #{joinId};
+    </update>
+
+    <delete id="delete">
+        delete from member where joinid = #{joinId};
+    </delete>
+
+    <select id="logins" resultType="String">
+        select * from member where joinId = #{loginId} and joinPwd = #{loginPwd};
+    </select>
+
+</mapper>

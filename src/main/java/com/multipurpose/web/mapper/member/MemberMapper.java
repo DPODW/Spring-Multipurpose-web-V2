@@ -1,4 +1,4 @@
-package com.multipurpose.web.mapper;
+package com.multipurpose.web.mapper.member;
 
 import com.multipurpose.web.vo.membervo.JoinMember;
 import com.multipurpose.web.vo.membervo.LoginMember;
@@ -14,5 +14,5 @@ public interface MemberMapper {
     void insert(JoinMember member);
     void update(JoinMember updateMember);
     void delete(JoinMember deleteMember);
-    List<LoginMember> logins(LoginMember loginMember);
+    List<JoinMember> logins(LoginMember loginMember);
 }

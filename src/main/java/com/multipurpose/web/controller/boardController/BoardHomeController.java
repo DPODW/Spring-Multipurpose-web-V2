@@ -1,7 +1,7 @@
 package com.multipurpose.web.controller.boardController;
 
 
-import com.multipurpose.web.repository.memberrepository.SessionConst;
+import com.multipurpose.web.mapper.SessionConst;
 import com.multipurpose.web.service.boardservice.BoardFindService;
 import com.multipurpose.web.vo.boardvo.Board;
 import com.multipurpose.web.vo.membervo.LoginMember;
@@ -12,7 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;

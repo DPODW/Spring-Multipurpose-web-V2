@@ -1,6 +1,6 @@
 package com.multipurpose.web.interceptor;
 
-import com.multipurpose.web.repository.memberrepository.SessionConst;
+import com.multipurpose.web.mapper.SessionConst;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;

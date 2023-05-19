@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.multipurpose.web.mapper.MemberMapper">
+<mapper namespace="com.multipurpose.web.mapper.member.MemberMapper">
 
     <insert id="insert">
         insert into member(joinName,joinId,joinPwd,joinCall)values(#{joinName},#{joinId},#{joinPwd},#{joinCall});
@@ -14,7 +14,7 @@
         delete from member where joinid = #{joinId};
     </delete>
 
-    <select id="logins" resultType="String">
+    <select id="logins" resultType="com.multipurpose.web.vo.membervo.JoinMember">
         select * from member where joinId = #{loginId} and joinPwd = #{loginPwd};
     </select>
 

@@ -1,7 +1,7 @@
 package com.multipurpose.web.controller.memberController;
 
 
-import com.multipurpose.web.repository.memberrepository.SessionConst;
+import com.multipurpose.web.mapper.SessionConst;
 import com.multipurpose.web.service.memberservice.LoginService;
 import com.multipurpose.web.vo.membervo.LoginMember;
 import lombok.RequiredArgsConstructor;

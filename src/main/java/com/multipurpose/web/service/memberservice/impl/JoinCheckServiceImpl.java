@@ -1,6 +1,6 @@
 package com.multipurpose.web.service.memberservice.impl;
 
-import com.multipurpose.web.repository.memberrepository.FindMemberRepository;
+import com.multipurpose.web.mapper.member.FindMemberMapper;
 import com.multipurpose.web.service.memberservice.JoinCheckService;
 import com.multipurpose.web.vo.membervo.JoinMember;
 import lombok.RequiredArgsConstructor;
@@ -15,11 +15,11 @@ import java.util.List;
 @Service
 public class JoinCheckServiceImpl implements JoinCheckService {
 
-    private final FindMemberRepository findMemberRepository;
+    private final FindMemberMapper findMemberMapper;
 
     @Override
     public boolean duplicateIdCheck(String duplicateId){
-        List<JoinMember> checkId = findMemberRepository.findDuplicateId(duplicateId);
+        List<JoinMember> checkId = findMemberMapper.findDuplicateId(duplicateId);
         if(checkId.size()==0 && StringUtils.hasText(duplicateId)){
             return true;
         }else{
@@ -34,7 +34,7 @@ public class JoinCheckServiceImpl implements JoinCheckService {
 
     @Override
     public boolean duplicateCallCheck(String duplicatedCall) {
-        List<JoinMember> checkCall = findMemberRepository.findDuplicateCall(duplicatedCall);
+        List<JoinMember> checkCall = findMemberMapper.findDuplicateCall(duplicatedCall);
         if (checkCall.size() == 0 && StringUtils.hasText(duplicatedCall)) {
             return true;
         } else {
@@ -44,7 +44,7 @@ public class JoinCheckServiceImpl implements JoinCheckService {
 
     @Override
     public boolean existingCallPermitCheck(String existingCallId,String updateCall) {
-        List<JoinMember> beforeCallNumber = findMemberRepository.findCallById(existingCallId);
+        List<JoinMember> beforeCallNumber = findMemberMapper.findCallById(existingCallId);
         JoinMember extractedCall = (JoinMember) beforeCallNumber.get(0);
         String joinCall = extractedCall.getJoinCall();
         if(joinCall.equals(updateCall)){

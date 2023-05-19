@@ -32,6 +32,7 @@ public class JoinMember {
      * Integer 로 선언하면 null 을 허용하기 때문에 보기싫은 초기값 0 을 출력하지 않고 공백으로 만들수 있음
      * */
 
+    @NotBlank
     private String joinPwdCheck;
 
 

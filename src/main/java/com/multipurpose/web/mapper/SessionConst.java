@@ -1,4 +1,4 @@
-package com.multipurpose.web.repository.memberrepository;
+package com.multipurpose.web.mapper;
 
 public interface SessionConst {
     /**

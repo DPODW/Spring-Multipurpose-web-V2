@@ -1,7 +1,6 @@
 package com.multipurpose.web.service.boardservice.impl;
 
-import com.multipurpose.web.repository.boardrepository.BoardRepository;
-import com.multipurpose.web.repository.boardrepository.FindBoardRepository;
+import com.multipurpose.web.mapper.board.FindBoardMapper;
 import com.multipurpose.web.service.boardservice.BoardFindService;
 import com.multipurpose.web.vo.boardvo.Board;
 import lombok.RequiredArgsConstructor;
@@ -15,15 +14,19 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BoardFindServiceImpl implements BoardFindService {
 
-    private final FindBoardRepository findBoardRepository;
+
+
+    private final FindBoardMapper findBoardMapper;
+
+
 
     @Override
     public List<Board> findAll(Board board) {
-        return findBoardRepository.findAll(board);
+        return findBoardMapper.findAll(board);
     }
 
     @Override
     public List<Board> findContent(Integer number) {
-        return findBoardRepository.findContent(number);
+        return findBoardMapper.findContent(number);
     }
 }

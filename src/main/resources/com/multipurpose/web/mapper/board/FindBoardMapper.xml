@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.multipurpose.web.mapper.board.FindBoardMapper">
+
+    <select id="findAll" resultType="com.multipurpose.web.vo.boardvo.Board">
+        select * from board;
+    </select>
+
+    <select id="findContent" >
+        select * from board where number = #{number}
+    </select>
+
+
+</mapper>

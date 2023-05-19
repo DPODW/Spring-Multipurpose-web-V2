@@ -1,7 +1,8 @@
 package com.multipurpose.web.controller.memberController;
 
-import com.multipurpose.web.repository.memberrepository.SessionConst;
+import com.multipurpose.web.mapper.SessionConst;
 import com.multipurpose.web.service.memberservice.LoginService;
+import com.multipurpose.web.vo.membervo.JoinMember;
 import com.multipurpose.web.vo.membervo.LoginMember;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -45,15 +46,13 @@ public class HomeController {
     @GetMapping("/home1")
     public String homes(HttpServletRequest request,LoginMember loginMember, Model model){
         HttpSession session = request.getSession(false);
-
         Object loginInfo = session.getAttribute(SessionConst.LOGIN_MEMBER);
-        List<LoginMember> loginMembers = loginService.loginCheck((LoginMember) loginInfo);
 
-        //현재 로그인 정보를 띄우기 위한 로직 . . . 서비스 쪽에 구현하는것이 좋을것 같다.
-        LoginMember loginMember1 = loginMembers.get(0);
-        loginMember.setLoginId(loginMember1.getLoginId());
-        loginMember.setLoginPwd(loginMember1.getLoginPwd());
-        
+        List<JoinMember> loginMembers = loginService.loginCheck((LoginMember) loginInfo);
+
+        JoinMember loginMember1 = loginMembers.get(0);
+        loginMember.setLoginId(loginMember1.getJoinId());
+        loginMember.setLoginPwd(loginMember1.getJoinPwd());
         model.addAttribute("id",loginMember.getLoginId());
         return "homes/Home1";
     }

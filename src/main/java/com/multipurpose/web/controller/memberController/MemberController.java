@@ -1,7 +1,6 @@
 package com.multipurpose.web.controller.memberController;
 
-import com.multipurpose.web.mapper.MemberMapper;
-import com.multipurpose.web.repository.memberrepository.SessionConst;
+import com.multipurpose.web.mapper.SessionConst;
 import com.multipurpose.web.service.memberservice.JoinCheckService;
 import com.multipurpose.web.service.memberservice.MemberService;
 import com.multipurpose.web.vo.membervo.JoinMember;
@@ -88,14 +87,13 @@ public class MemberController {
         }
     }
 
-
-
+    /**오류 존재*/
     @PostMapping("/member1")
     public String memberUpdate(@Validated @ModelAttribute("idMember") JoinMember updateMember,BindingResult bindingResult,
                                @RequestParam("joinPwdCheck") String joinPwdCheck,
                                @RequestParam("joinCall") String joinCall,
                                Model model){
-        if(!bindingResult.hasErrors() &&
+        if(
           joinCheckService.comparePwdCheck(joinPwdCheck,updateMember.getJoinPwd()) &&
           joinCheckService.existingCallPermitCheck(updateMember.getJoinId(),joinCall) ||
           joinCheckService.duplicateCallCheck(joinCall)

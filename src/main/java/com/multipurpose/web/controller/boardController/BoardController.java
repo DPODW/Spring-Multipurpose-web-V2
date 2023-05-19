@@ -1,7 +1,7 @@
 package com.multipurpose.web.controller.boardController;
 
 
-import com.multipurpose.web.repository.memberrepository.SessionConst;
+import com.multipurpose.web.mapper.SessionConst;
 import com.multipurpose.web.service.boardservice.BoardCheckService;
 import com.multipurpose.web.service.boardservice.BoardFindService;
 import com.multipurpose.web.service.boardservice.BoardService;
@@ -12,7 +12,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 import javax.servlet.http.HttpServletRequest;

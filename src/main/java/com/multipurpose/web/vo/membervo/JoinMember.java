@@ -47,4 +47,6 @@ public class JoinMember {
     public JoinMember() {
 
     }
+    
+    //노트북 연결 확인
 }

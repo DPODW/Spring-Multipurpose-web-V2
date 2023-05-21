@@ -24,6 +24,7 @@ import java.util.List;
 @RequestMapping("/boards")
 public class BoardController {
     private final BoardService boardService;
+
     private final BoardFindService boardFindService;
 
     private final BoardCheckService boardCheckService;

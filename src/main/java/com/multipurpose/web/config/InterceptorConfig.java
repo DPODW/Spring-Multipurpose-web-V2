@@ -13,11 +13,13 @@ public class InterceptorConfig implements WebMvcConfigurer {
         registry.addInterceptor(new LoginInterceptor())
                 .order(1)
                 .addPathPatterns("/**")
-                .excludePathPatterns("/user/joins","/home", "/login/logins","/userC/id","/userC/pwd","/userC/call","/API/**","/JC/**",
-                        "/userU/pwd","/userU/call","/error","/error-page/**");
+                .excludePathPatterns("/user/joins","/home", "/login/logins","/userC/id","/userC/pwd","/userC/call",
+                        "/userU/pwd","/userU/call","/error","/error-page/**",
+                        "/API/**","/JC/**","/loginAPI/**","/boardAPI/**");
     }
 }
 /**
  * API 설계를 위해서 API 컨트롤러는 인터셉터에서 제외
  * "/API/**","/JC/**"   <= API 매핑 경로
+ * loginAPI
  * */

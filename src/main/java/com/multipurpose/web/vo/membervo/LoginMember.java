@@ -8,6 +8,7 @@ import javax.validation.constraints.Size;
 
 @Data
 public class LoginMember {
+
     @NotBlank
     @Size(min=2, max= 20)
     private String loginId;

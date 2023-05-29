@@ -93,10 +93,10 @@ public class MemberController {
                                @RequestParam("joinPwdCheck") String joinPwdCheck,
                                @RequestParam("joinCall") String joinCall,
                                Model model){
-        if(
+        if(!bindingResult.hasErrors() &&
           joinCheckService.comparePwdCheck(joinPwdCheck,updateMember.getJoinPwd()) &&
-          joinCheckService.existingCallPermitCheck(updateMember.getJoinId(),joinCall) ||
-          joinCheckService.duplicateCallCheck(joinCall)
+          (joinCheckService.existingCallPermitCheck(updateMember.getJoinId(),joinCall) ||
+          joinCheckService.duplicateCallCheck(joinCall))
           ) {
             JoinMember memberUpdate = memberService.memberUpdate(updateMember);
             model.addAttribute("idMember",memberUpdate);

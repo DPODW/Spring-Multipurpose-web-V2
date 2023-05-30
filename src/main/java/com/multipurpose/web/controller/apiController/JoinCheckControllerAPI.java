@@ -36,8 +36,8 @@ public class JoinCheckControllerAPI {
             log.info("{}",joinId);
         return (ResponseEntity<String>) ResponseEntity.badRequest();
     }
+  //dd
 
-    
 
 
 

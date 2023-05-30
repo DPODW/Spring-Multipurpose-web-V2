@@ -49,7 +49,7 @@ public class MemberControllerAPI {
     }
 
 
-    /** 회원 수정 API (아이디 통제 필요) */
+    /** 회원 수정 API (서버 측에서 아이디 접근 금지 필요) */
     @PatchMapping("/member1")
     public ResponseEntity<JoinMember> memberUpdate(@Validated @RequestBody JoinMember updateMember){
         JSONObject jsonObject = new JSONObject(updateMember);

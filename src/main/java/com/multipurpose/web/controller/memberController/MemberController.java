@@ -87,7 +87,7 @@ public class MemberController {
         }
     }
 
-    /**오류 존재*/
+
     @PostMapping("/member1")
     public String memberUpdate(@Validated @ModelAttribute("idMember") JoinMember updateMember,BindingResult bindingResult,
                                @RequestParam("joinPwdCheck") String joinPwdCheck,

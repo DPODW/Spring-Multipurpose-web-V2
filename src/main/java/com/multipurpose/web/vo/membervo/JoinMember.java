@@ -1,5 +1,6 @@
 package com.multipurpose.web.vo.membervo;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.stereotype.Component;
@@ -9,11 +10,11 @@ import javax.validation.constraints.*;
 @Component
 @Data
 public class JoinMember {
+
     @NotBlank
     @Pattern(regexp = "[a-zA-Z0-9\uAC00-\uD7AF]*")//한글  영어 숫자 허용
     @Length(min=2, max= 20)
     private String joinName;
-
 
     @NotBlank
     @Length(min=2, max= 20)
@@ -21,7 +22,6 @@ public class JoinMember {
     @NotBlank
     @Length(min=10, max= 20)
     private String joinPwd;
-
 
     @NotBlank
     @Length(min=11, max= 11)
@@ -31,6 +31,7 @@ public class JoinMember {
      * th:value 로 검증 실패 값을 저장할때, 화면 최초 접근에는 th:value 에 아무런 값이 없음. 그래서 string 은 공백을, int 는 0을 출력함
      * Integer 로 선언하면 null 을 허용하기 때문에 보기싫은 초기값 0 을 출력하지 않고 공백으로 만들수 있음
      * */
+
 
     @NotBlank
     private String joinPwdCheck;

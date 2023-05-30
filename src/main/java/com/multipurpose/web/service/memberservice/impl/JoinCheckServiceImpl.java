@@ -20,7 +20,7 @@ public class JoinCheckServiceImpl implements JoinCheckService {
     @Override
     public boolean duplicateIdCheck(String duplicateId){
         List<JoinMember> checkId = findMemberMapper.findDuplicateId(duplicateId);
-        if(checkId.size()==0 && StringUtils.hasText(duplicateId)){
+        if(checkId.size()==0){
             return true;
         }else{
             return false;

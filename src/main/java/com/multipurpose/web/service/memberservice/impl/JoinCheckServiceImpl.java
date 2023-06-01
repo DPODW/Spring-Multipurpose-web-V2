@@ -35,7 +35,7 @@ public class JoinCheckServiceImpl implements JoinCheckService {
     @Override
     public boolean duplicateCallCheck(String duplicatedCall) {
         List<JoinMember> checkCall = findMemberMapper.findDuplicateCall(duplicatedCall);
-        if (checkCall.size() == 0 && StringUtils.hasText(duplicatedCall)) {
+        if (checkCall.size() == 0) {
             return true;
         } else {
             return false;
@@ -45,7 +45,10 @@ public class JoinCheckServiceImpl implements JoinCheckService {
     @Override
     public boolean existingCallPermitCheck(String existingCallId,String updateCall) {
         List<JoinMember> beforeCallNumber = findMemberMapper.findCallById(existingCallId);
-        JoinMember extractedCall = (JoinMember) beforeCallNumber.get(0);
+        log.info("{}",existingCallId);
+        log.info("{}",updateCall);
+        log.info("{}",beforeCallNumber);
+        JoinMember extractedCall =  beforeCallNumber.get(0);
         String joinCall = extractedCall.getJoinCall();
         if(joinCall.equals(updateCall)){
             return true;

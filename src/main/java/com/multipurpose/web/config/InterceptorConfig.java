@@ -18,7 +18,7 @@ public class InterceptorConfig implements WebMvcConfigurer {
                         "/userU/pwd","/userU/call","/error","/error-page/**",
 
 
-                        "/restrictFunction.js",
+                        "/joinFunction.js","/updateFunction.js","/deleteFunction.js","/boardWrite.js","/boardUpdate.js","/boardDelete.js",
                         "/API/**","/JC/**","/loginAPI/**","/boardAPI/**");
     }
 }

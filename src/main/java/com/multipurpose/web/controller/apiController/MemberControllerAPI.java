@@ -16,6 +16,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @Slf4j
 @RestController
 @RequiredArgsConstructor
@@ -73,9 +75,10 @@ public class MemberControllerAPI {
 
 
     @DeleteMapping("/member2")
-    public ResponseEntity<JoinMember> memberDelete(@Validated @RequestBody JoinMember deleteMember){
-        memberService.memberDelete(deleteMember);
-        return ResponseEntity.ok(deleteMember);
+    public ResponseEntity<String> memberDelete(@Validated @RequestBody Map<String,String> requestBody){
+        String joinId = requestBody.get("joinId");
+        memberService.memberDelete(joinId);
+        return ResponseEntity.ok(joinId);
     }
 
 }

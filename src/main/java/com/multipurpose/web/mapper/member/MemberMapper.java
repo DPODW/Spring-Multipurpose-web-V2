@@ -13,6 +13,6 @@ public interface MemberMapper {
 
     void insert(JoinMember member);
     void update(JoinMember updateMember);
-    void delete(JoinMember deleteMember);
+    void delete(String deleteId);
     List<JoinMember> logins(LoginMember loginMember);
 }

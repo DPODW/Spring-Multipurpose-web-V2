@@ -9,7 +9,7 @@ public interface MemberService {
 
     JoinMember memberUpdate(JoinMember joinMember);
 
-    void memberDelete(JoinMember deleteMember);
+    void memberDelete(String deleteMember);
 
     JoinMember memberInfoView(LoginMember loginMember);
 }

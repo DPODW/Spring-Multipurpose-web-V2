@@ -30,7 +30,7 @@ public class JoinCheckController {
                                      @ModelAttribute JoinMember joinMember,RedirectAttributes redirectAttributes
     ) {
         boolean duplicationCheckId = joinCheckService.duplicateIdCheck(joinId);
-        if(duplicationCheckId == true) {
+        if(duplicationCheckId == true && !joinId.isEmpty()) {
             flashDataMember(joinMember, redirectAttributes);
             flashDataId(joinId,redirectAttributes);
             return "redirect:/user/joins";
@@ -47,7 +47,7 @@ public class JoinCheckController {
                                @ModelAttribute JoinMember joinMember,
                                RedirectAttributes redirectAttributes) {
         boolean sameCheck = joinCheckService.comparePwdCheck(joinPwdCheck, joinMember.getJoinPwd());
-        if (sameCheck == true) {
+        if (sameCheck == true && !joinPwdCheck.isEmpty()) {
             flashDataMember(joinMember, redirectAttributes);
             flashDataPwd(joinPwdCheck, redirectAttributes);
             return "redirect:/user/joins";
@@ -65,7 +65,7 @@ public class JoinCheckController {
                                        @ModelAttribute JoinMember joinMember,
                                        RedirectAttributes redirectAttributes) {
         boolean duplicateCheckCall = joinCheckService.duplicateCallCheck(joinCall);
-        if(duplicateCheckCall == true) {
+        if(duplicateCheckCall == true && !joinCall.isEmpty()) {
             flashDataMember(joinMember, redirectAttributes);
             flashDataCall(joinCall, redirectAttributes);
             return "redirect:/user/joins";

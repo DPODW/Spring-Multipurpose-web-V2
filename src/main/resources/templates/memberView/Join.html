@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache" />
     <title>Spring web</title>
     <style>
         .field-error{
@@ -16,38 +17,110 @@
             color: deeppink;
         }
     </style>
-    <script>    function validateInputId() {
-        const input = document.getElementById("JoinId");
-        if (input.value === "") {
-            alert("정보를 입력해주세요!");
-            event.preventDefault();
-        } else {
-        }
-    }
-
-    function validateInputPwd() {
-        const input = document.getElementById("JoinPwdCheck");
-        if (input.value === "") {
-            alert("정보를 입력해주세요!");
-            event.preventDefault();
-        } else {
-        }
-    }
-
-    function validateInputCall() {
-        const input = document.getElementById("JoinCall");
-        if (input.value === "") {
-            alert("정보를 입력해주세요!");
-            event.preventDefault();
-        } else {
-        }
-    }
-    </script>
-
-
 </head>
+<script type="text/javascript" src="/restrictFunction.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $("#request").click(function(event) {
+            event.preventDefault(); // 폼의 기본 동작인 페이지 이동을 막습니다.
+
+            const MemberData = {
+                joinName: $("#JoinName").val(),
+                joinId: $("#JoinId").val(),
+                joinPwd: $("#JoinPwd").val(),
+                joinPwdCheck: $("#JoinPwdCheck").val(),
+                joinCall: $("#JoinCall").val()
+            };
+
+            $.ajax({
+                url: "/API/joins",
+                type: "POST",
+                async: true,
+                data: JSON.stringify(MemberData),
+                contentType: 'application/json',
+                success: function(response) {
+                    alert("저장 성공");
+                },
+                error: function(error) {
+                    alert("저장 실패");
+                }
+            });
+        });
+
+
+        $("#checkId").click(function(event) {
+            event.preventDefault(); // 폼의 기본 동작인 페이지 이동을 막습니다.
+
+            const MemberData = {
+                joinId: $("#JoinId").val()
+            };
+
+            $.ajax({
+                url: "/JC/id",
+                type: "POST",
+                async: true,
+                data: JSON.stringify(MemberData),
+                contentType: 'application/json',
+                success: function(response) {
+                    alert(" 아이디 사용 가능");
+                },
+                error: function(error) {
+                    alert("아이디 중복");
+                }
+            });
+        });
+
+
+        $("#checkPwd").click(function(event) {
+            event.preventDefault(); // 폼의 기본 동작인 페이지 이동을 막습니다.
+
+            const MemberData = {
+                joinPwd: $("#JoinPwd").val(),
+                joinPwdCheck: $("#JoinPwdCheck").val()
+            };
+
+            $.ajax({
+                url: "/JC/pwd",
+                type: "POST",
+                async: true,
+                data: JSON.stringify(MemberData),
+                contentType: 'application/json',
+                success: function(response) {
+                    alert("비밀번호 동일");
+                },
+                error: function(error) {
+                    alert("비밀번호 다름");
+                }
+            });
+        });
+
+
+        $("#checkCall").click(function(event) {
+            event.preventDefault(); // 폼의 기본 동작인 페이지 이동을 막습니다.
+
+            const MemberData = {
+                joinCall: $("#JoinCall").val()
+            };
+
+            $.ajax({
+                url: "/JC/call",
+                type: "POST",
+                async: true,
+                data: JSON.stringify(MemberData),
+                contentType: 'application/json',
+                success: function(response) {
+                    alert("전화번호 사용 가능");
+                },
+                error: function(error) {
+                    alert("전화번호 중복, 사용불가");
+                }
+            });
+        });
+    });
+</script>
 <body>
-    <form th:action method="post" th:object="${joinMember}">
+    <form  method="post" th:object="${joinMember}">
    <p>
        <input th:text="#{name}" type="text"  id="JoinName" th:field="*{joinName}" placeholder="서버에 연결되어있나요?" th:placeholder="#{join.name}" maxlength="20">
        <sub th:text="#{join.name.sub}"></sub>
@@ -58,7 +131,7 @@
    <p>
        <input th:text="#{id}" type="text" id="JoinId" name="joinId" placeholder="서버에 연결되어있나요?"  th:value="*{joinId}" th:placeholder="#{join.id}" maxlength="20"  >
        <sub th:text="#{join.id.sub}"></sub>
-       <button type="submit" onclick="validateInputId()" th:formaction="|@{/userC/id}|">아이디 중복 체크</button>
+       <button type="submit" onclick="validateInputId()" id="checkId">아이디 중복 체크</button>
         <h3 th:errorclass="field-error" th:errors="*{joinId}"></h3>
         <h3 th:if="${joinId}" th:text="#{join.id.NotDuplicated}"></h3>
         <h3 class="object-error" th:if="${joinIdFail}"  th:text="#{Duplicated.joinId}"></h3>
@@ -73,7 +146,7 @@
 
     <p>
        <input th:text="#{pwd.check}" type="password" id="JoinPwdCheck" name="joinPwdCheck" placeholder="서버에 연결되어있나요?" th:value="*{joinPwdCheck}"  maxlength="20"  th:placeholder="#{pwd.check.ph}">
-       <button type="submit" name="buttonType" value="submit" onclick="validateInputPwd()" th:formaction="|@{/userC/pwd}|">비밀번호 동일 체크</button>
+       <button type="submit"   value="submit" onclick="validateInputPwd()" id="checkPwd">비밀번호 동일 체크</button>
         <h3 th:if="${joinPwdCheck}"  th:text="#{join.pwd.same}"></h3>
         <h3 class="object-error" th:if="${joinPwdCheckFail}"  th:text="#{NotSame.joinPwdCheck}"></h3>
 
@@ -83,7 +156,7 @@
        <input th:text="#{call}" type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
        maxlength="11" id="JoinCall" placeholder="서버에 연결되어있나요?" th:field="*{joinCall}" th:placeholder="#{join.call}">
        <sub th:text="#{join.call.sub}"></sub>
-       <button type="submit" name="buttonType" value="submit" onclick="validateInputCall()"  th:formaction="|@{/userC/call}|">전화번호 중복 체크</button>
+       <button type="submit"  value="submit" onclick="validateInputCall()"  id="checkCall">전화번호 중복 체크</button>
         <h3 th:errorclass="field-error" th:errors="*{joinCall}"></h3>
         <h3 th:if="${joinCall}" th:text="#{join.call.NotDuplicated}"></h3>
         <h3 class="object-error" th:if="${joinCallFail}"  th:text="#{Duplicated.joinCall}"></h3>
@@ -92,7 +165,7 @@
         <div th:if="${#fields.hasGlobalErrors()}">
             <h3 th:text="#{joinCheckFail}"></h3>
         </div>
-   <p> <button type="submit" th:onclick="|location.href='@{/user/joins}'|">회원가입</button>
+   <p> <button type="submit" id="request">회원가입</button>
     </form>
 </body>
 </html>

@@ -26,10 +26,6 @@ public class MemberController {
      private final JoinCheckService joinCheckService;
 
 
-
-
-
-
     @GetMapping("/joins")
     public String joinForm(JoinMember joinMember , Model model,HttpServletRequest request){
         HttpSession session = request.getSession(false);

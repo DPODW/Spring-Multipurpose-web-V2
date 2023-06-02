@@ -30,6 +30,7 @@ public class BoardControllerAPI {
      * UPDATE , DELETE 시에는 number 를 기준으로 작동되기 때문에
      * JSON 형식으로 데이터를 전송할때, NUMBER 을 특정해줘야함
      * */
+
     @PostMapping("/insert")
     public ResponseEntity<Board> insertBoard(@Validated @RequestBody Board board){
         boardService.writeInsert(board);

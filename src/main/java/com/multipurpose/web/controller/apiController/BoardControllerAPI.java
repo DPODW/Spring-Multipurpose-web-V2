@@ -40,7 +40,7 @@ public class BoardControllerAPI {
 
     @PatchMapping("/update")
     public ResponseEntity<Board> updateBoard(@Validated @RequestBody Board board){
-        log.info("수정 정상 작동");
+        boardService.writeUpdate(board);
         return ResponseEntity.ok(board);
     }
 

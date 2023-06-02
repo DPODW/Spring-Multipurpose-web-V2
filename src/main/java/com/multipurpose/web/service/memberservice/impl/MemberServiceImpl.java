@@ -33,8 +33,8 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public void memberDelete(JoinMember deleteMember){
-        memberMapper.delete(deleteMember);
+    public void memberDelete(String deleteId){
+        memberMapper.delete(deleteId);
     }
 
     @Override

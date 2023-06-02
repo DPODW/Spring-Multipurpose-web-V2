@@ -26,10 +26,6 @@ public class MemberController {
      private final JoinCheckService joinCheckService;
 
 
-
-
-
-
     @GetMapping("/joins")
     public String joinForm(JoinMember joinMember , Model model,HttpServletRequest request){
         HttpSession session = request.getSession(false);
@@ -109,10 +105,10 @@ public class MemberController {
 
 
 
-    @PostMapping("/member2")
-    public String memberDelete(@Validated @ModelAttribute JoinMember deleteMember,HttpServletRequest request){
-        memberService.memberDelete(deleteMember);
-        return loginController.logout(request); //회원 삭제시, 해당 세션도 삭제
-    }
+//    @PostMapping("/member2")
+//    public String memberDelete(@Validated @ModelAttribute JoinMember deleteMember,HttpServletRequest request){
+//        memberService.memberDelete(deleteMember);
+//        return loginController.logout(request); //회원 삭제시, 해당 세션도 삭제
+//    }
 
 }

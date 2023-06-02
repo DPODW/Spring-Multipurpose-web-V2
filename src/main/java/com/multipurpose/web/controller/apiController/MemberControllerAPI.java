@@ -16,6 +16,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @Slf4j
 @RestController
 @RequiredArgsConstructor
@@ -30,7 +32,8 @@ public class MemberControllerAPI {
 
     /** 회원 가입 API */
     @PostMapping("/joins")
-    public ResponseEntity<JoinMember> join(@Validated @RequestBody JoinMember joinMember){
+    public ResponseEntity<JoinMember> join(@Validated @RequestBody JoinMember joinMember, BindingResult bindingResult){
+        log.info("{}",joinMember);
         JSONObject jsonObject = new JSONObject(joinMember);
         String joinId = jsonObject.getString("joinId");
         String joinPwdCheck = jsonObject.getString("joinPwdCheck");
@@ -39,14 +42,17 @@ public class MemberControllerAPI {
         if(joinCheckService.duplicateIdCheck(joinId)&&
            joinCheckService.comparePwdCheck(joinPwdCheck,joinMember.getJoinPwd())&&
            joinCheckService.duplicateCallCheck(joinCall)){
-            log.info("회원가입 정상 실행");
+            log.info("API 회원가입 정상 실행");
 
             memberService.joinOk(joinMember);
             return ResponseEntity.ok(joinMember);
         }else
         log.info("회원가입 실패");
+        bindingResult.reject("joinCheckFail");
         return (ResponseEntity<JoinMember>) ResponseEntity.badRequest();
     }
+
+
 
 
     /** 회원 수정 API (서버 측에서 아이디 접근 금지 필요) */
@@ -69,9 +75,10 @@ public class MemberControllerAPI {
 
 
     @DeleteMapping("/member2")
-    public ResponseEntity<JoinMember> memberDelete(@Validated @RequestBody JoinMember deleteMember){
-        memberService.memberDelete(deleteMember);
-        return ResponseEntity.ok(deleteMember);
+    public ResponseEntity<String> memberDelete(@Validated @RequestBody Map<String,String> requestBody){
+        String joinId = requestBody.get("joinId");
+        memberService.memberDelete(joinId);
+        return ResponseEntity.ok(joinId);
     }
 
 }

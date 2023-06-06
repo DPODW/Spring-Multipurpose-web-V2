@@ -1,6 +1,8 @@
 package com.multipurpose.web.controller.apiController;
 
 import com.multipurpose.web.service.memberservice.JoinCheckService;
+import com.multipurpose.web.vo.membervo.CheckMember;
+import com.multipurpose.web.vo.membervo.JoinMember;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -26,9 +28,9 @@ public class CheckControllerAPI {
      * MAP 으로 JSON 객체 추출
      * */
     @PostMapping("/id")
-    public ResponseEntity<String> idDuplicationCheck1(@Validated @RequestBody Map<String ,String> requestBody){
-        String joinId = requestBody.get("joinId");
-        if(joinCheckService.duplicateIdCheck(joinId) == true){
+    public ResponseEntity<String> idDuplicationCheck1(@Validated @RequestBody CheckMember requestBody){
+        String joinId = requestBody.getJoinId();
+        if(joinCheckService.duplicateIdCheck(joinId) == true && !joinId.isEmpty()){
             log.info("사용 가능 아이디");
             log.info("{}",joinId);
             return ResponseEntity.ok(joinId);
@@ -39,9 +41,9 @@ public class CheckControllerAPI {
     }
 
     @PostMapping("/pwd")
-    public ResponseEntity<String> pwdSameCheck(@Validated  @RequestBody Map<String,String> requestBody){
-        String joinPwd = requestBody.get("joinPwd");
-        String joinPwdCheck = requestBody.get("joinPwdCheck");
+    public ResponseEntity<String> pwdSameCheck(@Validated  @RequestBody CheckMember requestBody){
+        String joinPwd = requestBody.getJoinPwd();
+        String joinPwdCheck = requestBody.getJoinPwdCheck();
         if(joinCheckService.comparePwdCheck(joinPwdCheck,joinPwd) == true){
             log.info("비밀번호 동일");
             return ResponseEntity.ok(joinPwdCheck);
@@ -53,9 +55,9 @@ public class CheckControllerAPI {
 
 
     @PostMapping("/call")
-    public ResponseEntity<String> callDuplicationCheck(@Validated @RequestBody Map<String,String> requestBody){
-        String joinCall = requestBody.get("joinCall");
-        if(joinCheckService.duplicateCallCheck(joinCall)){
+    public ResponseEntity<String> callDuplicationCheck(@Validated @RequestBody CheckMember requestBody){
+        String joinCall = requestBody.getJoinCall();
+        if(joinCheckService.duplicateCallCheck(joinCall) && !joinCall.isEmpty()){
             log.info("전화번호 o");
             return ResponseEntity.ok(joinCall);
         }else
@@ -65,9 +67,9 @@ public class CheckControllerAPI {
 
 
     @PostMapping("/call1")
-    public ResponseEntity<String> UcallDuplicationCheck(@Validated @RequestBody Map<String,String> requestBody){
-        String joinCall = requestBody.get("joinCall");
-        String joinId = requestBody.get("joinId");
+    public ResponseEntity<String> UcallDuplicationCheck(@Validated @RequestBody CheckMember requestBody){
+        String joinCall = requestBody.getJoinCall();
+        String joinId = requestBody.getJoinId();
         if(joinCheckService.duplicateCallCheck(joinCall) == true ||
            joinCheckService.existingCallPermitCheck(joinId,joinCall)){
             log.info("현재 전화번호 or 변경 가능한 전화번호 ");

@@ -7,7 +7,7 @@
     <title>Spring web</title>
 </head>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" src="member/deleteFunction.js"></script>
+<script type="text/javascript" src="/member/deleteFunction.js"></script>
 <body>
 <!-- 여기엔 삭제할 정보가 무조건 들어가야 하기 때문에 (model로) 타임리프 메시지 프로퍼티를 사용하지 않음-->
     <form th:action method="post" th:object="${idMember}">
@@ -16,7 +16,7 @@
    <p><input th:text="#{id}" type="text" id="DeleteId" th:field="*{joinId}" placeholder="서버에 연결되어있나요?" readonly></p>
    <p><input th:text="#{pwd}" type="password" id="DeletePwd" name="joinPwd" placeholder="서버에 연결되어있나요?" th:value="${idMember.getJoinPwd()}" readonly> </p>
    <p><input th:text="#{call}" type="text" id="DeleteCall" th:field="*{joinCall}" placeholder="서버에 연결되어있나요?"  readonly></p>
-   <p><button type="submit" id="request">탈퇴하시겠습니까?</button>
+   <p><button type="submit"  th:onclick="|location.href='@{/user/member2}'|">탈퇴하시겠습니까?</button>
     </form>
 </body>
 </html>

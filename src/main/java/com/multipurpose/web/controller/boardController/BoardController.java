@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -74,14 +75,15 @@ public class BoardController {
 
 
     @PostMapping("")
-    public String writeBoard(@ModelAttribute Board board){
+    public String writeBoard(@Validated @ModelAttribute Board board){
         boardService.writeInsert(board);
         return "redirect:/boardHome";
     }
 
 
     @PostMapping("/board1")
-    public String updateBoard(@ModelAttribute Board board){
+    public String updateBoard(@Validated @ModelAttribute Board board){
+        log.info("{}",board);
         boardService.writeUpdate(board);
         return "redirect:/boardHome";
     }

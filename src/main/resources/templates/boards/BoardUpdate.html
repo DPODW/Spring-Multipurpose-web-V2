@@ -5,7 +5,7 @@
 <title>게시판</title>
 </head>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" src="board/boardUpdate.js"></script>
+<script type="text/javascript" src="/board/boardUpdate.js"></script>
 <body>
 <style>
 
@@ -18,8 +18,8 @@
     <div id="board_write">
         <h4>글을 수정하는 공간입니다.</h4>
             <div id="write_area">
-                <form method="PATCH">
-                    <input id="number" name="number1" th:value="${updateContent.number}" readonly/>
+                <form method="post" th:action="@{/boards/board1}">
+                    <input id="number" name="number" th:value="${updateContent.number}" readonly/>
                     <p>
                     <h4>작성자↓ </h4>
                     <textarea type="text" id="UpdateName" name="id" th:text="${updateContent.id}"  placeholder="이름" readonly></textarea>
@@ -36,7 +36,7 @@
                     </div>
 
                     <div class="bt_se">
-                        <button type="submit" id="request">글 수정</button>
+                        <button type="submit">글 수정</button>
                     </div>
                 </form>
                 <div class="bt_se">

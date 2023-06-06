@@ -1,6 +1,5 @@
 package com.multipurpose.web.vo.membervo;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.stereotype.Component;
@@ -47,6 +46,6 @@ public class JoinMember {
     public JoinMember() {
 
     }
-    
+
     //노트북 연결 확인
 }

@@ -10,7 +10,7 @@ $(document).ready(function() {
         };
 
         $.ajax({
-            url: "/boardAPI/insert",
+            url: "/board/insert",
             type: "POST",
             async: true,
             data: JSON.stringify(BoardData),

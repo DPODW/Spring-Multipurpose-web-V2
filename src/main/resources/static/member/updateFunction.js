@@ -1,20 +1,5 @@
 
 
-function validateInputPwd() {
-    const input = document.getElementById("updatePwdCheck");
-    if (input.value === "") {
-        alert("정보를 입력해주세요!");
-    }
-}
-
-function validateInputCall() {
-    const input = document.getElementById("updateCall");
-    if (input.value === "") {
-        alert("정보를 입력해주세요!");
-    }
-}
-
-
 $(document).ready(function() {
     $("#request").click(function(event) {
         event.preventDefault(); // 폼의 기본 동작인 페이지 이동을 막습니다.
@@ -60,8 +45,13 @@ $(document).ready(function() {
             success: function(response) {
                 alert("비밀번호 동일");
             },
-            error: function(error) {
-                alert("비밀번호 다름");
+            error: function(jqXHR) {
+                if(jqXHR.status == 400){
+                    alert("비밀번호 형식을 다시 확인해주세요");
+                }else if(jqXHR.status == 500){
+                    alert("비밀번호가 동일하지 않습니다");
+                }else
+                    alert("예기치 않은 오류");
             }
         });
     });
@@ -84,8 +74,13 @@ $(document).ready(function() {
             success: function(response) {
                 alert("전화번호 사용 가능");
             },
-            error: function(error) {
-                alert("전화번호 중복, 사용불가");
+            error: function(jqXHR, textStatus, errorThrown) {
+                if(jqXHR.status == 400){
+                    alert("전화번호 형식을 다시 확인해주세요");
+                }else if(jqXHR.status == 500){
+                    alert("전화번호 중복 입니다");
+                }else
+                    alert("예기치 않은 오류");
             }
         });
     });

@@ -5,7 +5,7 @@
 <title>게시판</title>
 </head>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" src="board/boardDelete.js"></script>
+<script type="text/javascript" src="/board/boardDelete.js"></script>
 <body>
     <style>
         textarea:disabled{
@@ -22,7 +22,7 @@
         <h4>해당 글을 삭제하시겠습니까?</h4>
         <h4>글 본문</h4>
             <div id="write_area">
-                <form method="DELETE">
+                <form method="post" th:action="@{/boards/board2}">
                     <input type="hidden" id="number" name="number" th:value="${deleteContent.number}"/>
 
                          <h4>작성자↓ </h4>
@@ -41,7 +41,7 @@
                     </div>
 
                     <div class="bt_se">
-                        <button type="submit" id="request">게시글 삭제</button>
+                        <button type="submit">게시글 삭제</button>
                     </div>
                 </form>
                 <a th:href="@{/boardHome/}">게시글 홈으로</a>

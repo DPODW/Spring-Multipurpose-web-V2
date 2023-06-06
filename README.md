@@ -1,3 +1,5 @@
+기본적인 CRUD 프로젝트 <br>
+[intellij , MyBatis , Spring boot , ajax] 
 
 웹 동작을 위한 **일반 Controller 와** , **API 구현을 위한 API Controller** 가 있음.<br>
 
